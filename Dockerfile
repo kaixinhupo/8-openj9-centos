@@ -8,9 +8,20 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     tar xzf /tmp/OpenJDK.tar.gz && \
     mkdir /usr/local/jdk && \
     cp -rf /tmp/jdk8u292-b10/* /usr/local/jdk && \
-    rm -f /tmp/OpenJDK.tar.gz
-ENV JAVA_HOME=/usr/local/jdk
-ENV CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar
-ENV PATH=$PATH:${JAVA_HOME}/bin
+    rm -f /tmp/OpenJDK.tar.gz && \
+    yum -y install kde-l10n-Chinese && \
+    yum reinstall -y glibc-common && \
+    localedef -c -f UTF-8 -i zh_CN zh_CN.utf8 && \
+    yum clean all && \
+    rm -rf /tmp/* && \
+    rm -rf /var/cache/yum/* 
+    
+    
+ENV JAVA_HOME=/usr/local/jdk \
+    CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar \
+    PATH=$PATH:${JAVA_HOME}/bin
+ENV LANG=zh_CN.UTF-8 \
+    LANGUAGE=zh_CN:zh \
+    LC_ALL=zh_CN.UTF-8
 
 WORKDIR /
