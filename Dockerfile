@@ -17,9 +17,9 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
     rm -rf /var/cache/yum/* 
     
     
-ENV JAVA_HOME=/usr/local/jdk \
-    CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar \
-    PATH=$PATH:${JAVA_HOME}/bin
+ENV JAVA_HOME=/usr/local/jdk 
+ENV CLASSPATH=.:${JAVA_HOME}/jre/lib/rt.jar:${JAVA_HOME}/lib/dt.jar:${JAVA_HOME}/lib/tools.jar 
+ENV PATH=$PATH:${JAVA_HOME}/bin
 ENV LANG=zh_CN.UTF-8 \
     LANGUAGE=zh_CN:zh \
     LC_ALL=zh_CN.UTF-8
